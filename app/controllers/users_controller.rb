@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   def create #restful route to make new user!
     @user = User.new(user_params)
     if @user.save
-      redirect_to ('/users') , notice: 'User was successfully created.'
+      redirect_to (users_path), flash[:notice] =  'User was successfully created.'
     else
       flash[:errors] = @user.errors.full_messages
       redirect_to new_user_path
