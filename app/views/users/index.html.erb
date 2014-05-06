@@ -1,0 +1,54 @@
+<div class = 'container'>
+	<div class='row'>
+		<div class='col-md-8'>
+			<h1>The Wall</h1>
+		</div>
+		<div class='col-md-4'>
+			<h2> Welcome <%= @current_user[:first_name]%> <a class= 'btn btn-primary' href="/signout">Logout</a></h2>
+		</div>
+	</div>
+	<div class='row'>
+		<h3>Post a message to the wall: </h3>
+		<%= simple_form_for(:message, :url => 'messages/create') do |m| %>
+			<%= m.hidden_field(:user_id, :value => @current_user[:id])%>
+			<%= m.text_area :message, required:false, :class => "col-xs-12" %> <br>
+			<%= m.button :submit,'Post Message', :class => 'btn btn-success btn-block'  %>
+		<% end %>
+		<br>
+		<% if @messages.any? %>
+			<% @msg_list = @messages.order(created_at: :desc) %>
+			<% @msg_list.each do |g| %>
+				<div class=' msg'>
+					<span class='m_name'><%= g.user.first_name+" "+g.user.last_name%></span> said:
+					<span class='m_text'>"<%= g.message%>"</span> 
+					<span class='t_stamp'><%= g.created_at.localtime.strftime("%a %b %d, %Y at %l:%M %p") %></span><br>
+					
+					<div class ='com' >
+						<% if g.comments.any? %>
+							<table class='table table-striped'>
+								<thead>
+									<th> Who </th>
+									<th> Comment </th>
+									<th> When </th>
+								</thead>
+								<% g.comments.each do |c| %>
+								<tbody>
+									<td><%= c.user.first_name+" "+c.user.last_name %> </td>
+									<td><%= c.comment%></td>
+									<td><%= c.created_at.localtime.strftime("%a %b %d, %Y at %l:%M %p")%></td>
+								</tbody>
+								<% end %>
+							</table>
+						<% end %>
+						<%= simple_form_for(:comment, :url => 'comments/create') do |m| %>
+							<%= m.hidden_field(:message_id, :value => g.id )%>
+							<%= m.hidden_field(:user_id, :value => session[:user_id])%>
+							<%= m.input :comment, required:false, :class => 'col-md-30' %><br>
+							<%= m.button :submit,'Post Comment', :class => 'btn btn-success btn-xs btn-block'%>
+						<% end %>
+					</div>
+				</div>
+			<% end %>
+		<% end %>
+	</div>
+</div>

@@ -1,0 +1,21 @@
+<div class = 'container'>
+	<div class ='row'>
+		<div class= 'col-md-4'></div>
+		<div class= 'col-md-4'>
+			<h1>Login</h1>
+			<% if flash[:error] %>
+				<p class='tred'><%= flash[:error] %></p>
+			<% end %>
+			<%= simple_form_for(:session, :url => sessions_path) do |f| %>
+			  <%= f.input :email, required:false%>
+			  <%= f.input :password, required:false %> <br>
+			  <%= f.button :submit, "Login", :class => 'btn btn-primary' %> 
+			<% end %>
+			<br>
+			<a class = 'btn btn-success' href="/signup">Sign Up</a>
+		</div>
+		<div class= 'col-md-4'></div>
+		
+	</div>
+
+</div>

@@ -1,0 +1,26 @@
+<div class='container'>
+	
+	<div class = 'row'>
+		<div class='col-md-4'></div>
+		<div class = 'col-md-4'>
+			<h1>Register</h1>
+			<% if flash[:errors] %>
+				<% flash[:errors].each do |error| %>
+					<p class='tred'><%= error %></p>
+				<% end %>
+			<% end %>
+			
+			<%= simple_form_for(@user, html: {class: 'form-vertical'}) do |f| %>
+				<%= f.input :first_name, required:false %>
+				<%= f.input :last_name,required:false %>
+				<%= f.input :email,required:false %>
+				<%= f.input :password,required:false %>
+				<%= f.input :password_confirmation,required:false %><br>
+				<%= f.button :submit, :class => 'btn btn-primary' %>
+			<% end %>
+			<br>
+			<a class = 'btn btn-success'href="/signin">Already a user?</a>
+		</div>
+		<div class='col-md-4'></div>
+	</div>
+</div>
