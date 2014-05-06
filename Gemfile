@@ -1,10 +1,26 @@
 source 'https://rubygems.org'
+ruby '2.1.0'
 
+gem 'font-awesome-less'
+gem 'font-awesome-sass'
+
+gem 'bootstrap-sass'
+gem 'less-rails'
+
+gem 'therubyracer'
+
+gem 'thin'
+
+group :development, :test do
+	gem 'sqlite3'
+end
+
+group :production do
+	gem 'pg'
+end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.3'
 gem 'bootstrap-sass'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
