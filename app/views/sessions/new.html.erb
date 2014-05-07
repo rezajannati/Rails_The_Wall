@@ -9,10 +9,12 @@
 			<%= simple_form_for(:session, :url => sessions_path) do |f| %>
 			  <%= f.input :email, required:false%>
 			  <%= f.input :password, required:false %> <br>
-			  <%= f.button :submit, "Login", :class => 'btn btn-primary' %> 
+			  <%= f.button :submit, "Login", :class => 'btn btn-primary btn-block' %> 
 			<% end %>
 			<br>
-			<a class = 'btn btn-success' href="/signup">Sign Up</a>
+			<a class = 'btn btn-success btn-block' href="/signup">Sign Up</a>
+			<br><br>
+			<a class = 'btn btn-warning btn-lg btn-block' href="http://hidden-fjord-3664.herokuapp.com">Return to homepage</a>
 		</div>
 		<div class= 'col-md-4'></div>
 		
